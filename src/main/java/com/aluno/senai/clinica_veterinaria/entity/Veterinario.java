@@ -1,10 +1,7 @@
 package com.aluno.senai.clinica_veterinaria.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Veterinario {
@@ -14,10 +11,13 @@ public class Veterinario {
     private Long id;
 
     private String nome;
-
     private String telefone;
-
     private String email;
+
+
+    @ManyToOne
+    @JoinColumn(name = "clinica_id")
+    private Clinica clinica;
 
     public Long getId() {
         return id;
@@ -36,6 +36,7 @@ public class Veterinario {
     }
 
     public String getTelefone() {
+
         return telefone;
     }
 
@@ -49,5 +50,13 @@ public class Veterinario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Clinica getClinica() {
+        return clinica;
+    }
+
+    public void setClinica(Clinica clinica) {
+        this.clinica = clinica;
     }
 }

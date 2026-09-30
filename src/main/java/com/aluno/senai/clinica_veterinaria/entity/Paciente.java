@@ -1,9 +1,6 @@
 package com.aluno.senai.clinica_veterinaria.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Paciente {
@@ -13,12 +10,14 @@ public class Paciente {
     private Long id;
 
     private String nome;
-
     private String especie;
-
     private String raca;
-
     private String sexo;
+
+
+    @ManyToOne
+    @JoinColumn(name = "tutor_id")
+    private Tutor tutor;
 
     public Long getId() {
         return id;
@@ -58,5 +57,13 @@ public class Paciente {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public Tutor getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
     }
 }
